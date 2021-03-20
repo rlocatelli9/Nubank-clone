@@ -1,27 +1,200 @@
-#container {
-  text-align: center;
+ion-header{
+  ion-toolbar{
+    --min-height: 100px;
+    ion-title{
+      > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 3rem;
+          vertical-align: middle;
+         margin-right: 1rem;
+        }s
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+        span {
+          font-size: 1.4rem;
+          font-weight: 700;
+        }
+      }
+
+      ion-button{
+        margin-top: 0.3rem;
+        display: block;
+      }
+    }
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+ion-content{
+  .background{
+    opacity: 0;
+    .bank-information{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      ion-icon{
+        font-size: 7rem;
+      }
+
+      small {
+        margin: 0.4rem 0;
+        font-size: 0.9rem;
+        display: block;
+      }
+    }
+
+    ion-list {
+      background: none;
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      margin-top: 0.5rem;
+      // border-top: 1px solid var(--ion-color-light-shade);
+
+      .item-menu-list{
+        padding: none !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--ion-color-primary-contrast);
+        --background: transparent;
+        height: 3rem;
+        --detail-icon-opacity: 1;
+
+        ion-icon{
+          font-size: 1.5rem;
+          color: var(--ion-color-primary-contrast);
+          border: none;
+        }
+
+        ion-label {
+          display: flex;
+          flex: 1;
+          padding: 0 0.2rem;
+          color: var(--ion-color-primary-contrast);
+
+        }
+
+        &:first-of-type{
+          border-top: 0.55px solid rgba(var(--ion-color-primary-contrast-rgb), 0.8);
+        }
+      }
+    }
+
+    .logout {
+      margin-top: 1rem;
+      margin-bottom: 120px;
+    }
+  }
+
+  .block-content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    z-index: 99;
+    padding: 1rem;
+
+    &.fixed {
+      position: fixed;
+      top: 110px;
+      overflow-y: hidden;
+    }
+
+    ion-card {
+
+      & + ion-card {margin-top: 1rem;}
+
+      .icon-emprestimo {
+        background: rgba($color: #7159c1, $alpha: 0.5);
+        padding: 0.3rem;
+        border-radius: 50%;
+      }
+
+      ion-card-content{
+        display: flex;
+        flex-direction: column;
+        padding-top: 0;
+
+        > .content {
+          display: flex;
+          flex-direction: column;
+          padding: 0.5rem 0;
+
+          ion-label{
+            font-weight: 700;
+            font-size: 1.7rem;
+
+            &.closed {
+              color: red;
+            }
+
+            &.emprestimo {
+              font-size: 1.2rem;
+            }
+          }
+
+          p {
+            margin-bottom: 1rem;
+          }
+
+          .points{
+            color: green;
+            font-weight: 700;
+          }
+        }
+
+        ion-button {
+          margin-top: 1rem;
+          font-size: 1rem;
+        }
+
+      }
+    }
+  }
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+ion-footer{
+  &.hidden {
+    height: 0;
+    ion-slides{
+      opacity: 0;
+    }
+  }
+  ion-toolbar{
+    padding: 0.9rem 0;
+  }
 
-  color: #8c8c8c;
+  ion-slide {
+    width: 5rem;
+    height: 5rem;
+    .container{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: var(--ion-color-primary-tint);
+      padding: 0.6rem;
+      margin: 0 0.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
-  margin: 0;
+      ion-icon {
+        font-size: 1.4rem;
+      }
+
+      span{
+        font-size: 0.9rem;
+      }
+    }
+  }
 }
 
-#container a {
-  text-decoration: none;
+.opacity-transition{
+  transition: opacity 0.4s;
 }

@@ -1,20 +1,166 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      <div class="header-info">
+        <img src="../../assets/Nubank_Logo@2x.png" alt="">
+        <span>Robson</span>
+      </div>
+      <ion-button (click)="toggleBlocks()" color="light" fill="clear" size="small">
+        <ion-icon slot="icon-only" [name]="initialStep > 0 ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+      </ion-button>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content color="primary" class="ion-padding" [scrollY]="!swiping">
+  <div #background class="background opacity-transition">
+    <div class="bank-information ion-text-center">
+      <ion-icon name="qr-code-outline"></ion-icon>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <small>Agência <strong>0001</strong> Conta <strong>1234567-8</strong></small>
+      <small>Banco <strong>260 0 Nu Pagamentos S.A.</strong></small>
+    </div>
+
+    <ion-list lines="full">
+      <ion-item class="item-menu-list" *ngFor="let item of arrayItemsMenu" detail>
+        <ion-icon slot="start" name="{{item.icon}}"></ion-icon>
+        <ion-label>{{item.text}}</ion-label>
+        <!-- <ion-icon slot="end" name="chevron-forward-outline"></ion-icon> -->
+      </ion-item>
+    </ion-list>
+
+    <ion-button class="logout" color="light" expand="block" fill="outline">
+      SAIR DO APP
+    </ion-button>
+  </div>
+
+  <div #blocks [ngClass]="fixedBlocks() ? 'fixed' : null" class="block-content ion-no-padding">
+    <ion-card class="ion-no-margin">
+      <ion-item #swipeDown class="ion-margin-vertical" lines="none">
+        <ion-icon slot="start" name="card-outline"></ion-icon>
+        <ion-label>Cartão de Crédito</ion-label>
+      </ion-item>
+      <ion-card-content>
+        <span class="isClosed">
+          Fatura fechada
+        </span>
+        <div class="content">
+          <ion-label class="closed">
+            R$ 1000,00
+          </ion-label>
+          <span>Vence <strong>26/03/2021</strong></span>
+        </div>
+        <ion-buttons>
+          <ion-button color="danger" expand="block" fill="outline">
+            PAGAR FATURA
+          </ion-button>
+          <ion-button color="dark" expand="block" fill="outline">
+            PARCELAR
+          </ion-button>
+        </ion-buttons>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="ion-no-margin">
+      <ion-item class="ion-margin-vertical" lines="none">
+        <ion-icon slot="start" name="wallet-outline"></ion-icon>
+        <ion-label>Conta</ion-label>
+      </ion-item>
+      <ion-card-content>
+        <div class="content">
+          <span>
+            Saldo disponível
+          </span>
+          <ion-label class="saldo" color="dark">
+            R$ 1.000,00
+          </ion-label>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="ion-no-margin">
+      <ion-item class="ion-margin-vertical" lines="none">
+        <ion-icon color="primary icon-emprestimo" expand="block" fill="outline" slot="start" name="umbrella-outline"></ion-icon>
+        <ion-label color="primary">Seguro de vida</ion-label>
+      </ion-item>
+      <ion-card-content>
+        <div class="content">
+          <p>Conheça Nubank Vida: um seguro simples e que cabe no bolso.</p>
+          <ion-buttons>
+            <ion-button color="primary" expand="block" fill="outline">
+              CONHECER
+            </ion-button>
+          </ion-buttons>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="ion-no-margin">
+      <ion-item class="ion-margin-vertical" lines="none">
+        <ion-icon slot="start" name="diamond-outline"></ion-icon>
+        <ion-label>Empréstimo</ion-label>
+      </ion-item>
+      <ion-card-content>
+        <div class="content">
+          <span>
+            Valor disponível de até
+          </span>
+          <ion-label class="emprestimo" color="dark">
+            R$ 1000,00
+          </ion-label>
+        </div>
+        <ion-buttons>
+          <ion-button color="primary" expand="block" fill="outline">
+            SIMULAR EMPRÉSTIMO
+          </ion-button>
+        </ion-buttons>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="ion-no-margin">
+      <ion-item class="ion-margin-vertical" lines="none">
+        <ion-icon slot="start" name="gift-outline"></ion-icon>
+        <ion-label>Rewards</ion-label>
+      </ion-item>
+      <ion-card-content>
+        <div class="content">
+          <span>
+            Total
+          </span>
+          <ion-label color="dark">
+            1.000 pts
+          </ion-label>
+          <span>Você acumulou <span class="points">1.000</span> pontos esse mês.</span>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="ion-no-margin">
+      <ion-item class="ion-margin-vertical" lines="none">
+        <ion-icon slot="start" name="card-outline"></ion-icon>
+        <ion-label>Google Play</ion-label>
+      </ion-item>
+      <ion-card-content>
+        <span>Use o Google Play com seus cartões Nubank.</span>
+        <ion-buttons>
+          <ion-button color="primary" expand="block" fill="outline">
+          REGISTRAR MEU CARTÃO
+          </ion-button>
+        </ion-buttons>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
+
+<ion-footer [ngClass]="fixedBlocks() ? 'hidden' : null" class="ion-no-border">
+  <ion-toolbar color="primary" class="ion-no-margin">
+    <ion-slides [options]="slidesOptions">
+      <ion-slide *ngFor="let item of arrayOptions">
+        <div class="container ion-text-left">
+          <ion-icon name="{{item.icon}}"></ion-icon>
+          <span>{{item.text}}</span>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </ion-toolbar>
+</ion-footer>
