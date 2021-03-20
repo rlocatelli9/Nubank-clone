@@ -1,0 +1,7 @@
+{
+  "name": "NuIonic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
